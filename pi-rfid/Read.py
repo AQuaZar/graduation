@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from time import sleep
+from datetime import datetime
 import sys
 import RPi.GPIO as GPIO
 import requests
@@ -21,6 +22,9 @@ try:
         print("ID: %s\nToken: %s" % (id,token))
         headers = {'Authorization': f'Token {token}'}
         r = requests.get(url, headers=headers)
+        timestamp = datetime.now()
+        dt_string = timestamp.strftime("%d/%m/%Y %H:%M:%S")
+        print("Date and time =", dt_string)
         print(r.content)
         print(r.status_code)
         if r.status_code==200:

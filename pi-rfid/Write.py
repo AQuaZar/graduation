@@ -12,7 +12,7 @@ try:
         while(True):
             token = input("Please enter token of admin user \n")
             headers = {'Authorization': f"Token {token}"}
-            username = input("Write username of user to generate token \n")
+            username = input("Write username whose token has to be generated \n")
             payload = {"username":f"{username}","password":"NAU12345"}
             r = requests.post(url, headers=headers, data=payload)
             print(r.status_code)
