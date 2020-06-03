@@ -25,10 +25,7 @@ admin.site.register(User, UserAdmin)
 
 @admin.register(Attendance)
 class AttendanceAdmin(admin.ModelAdmin):
-    list_display = [
-        "student",
-        "datetime",
-    ]
+    list_display = ["student", "datetime", "get_department", "get_group_number"]
     list_filter = [
         "student",
         "datetime",
@@ -40,3 +37,15 @@ class AttendanceAdmin(admin.ModelAdmin):
         "datetime__month",
         "datetime__year",
     ]
+
+    def get_department(self, obj):
+        return obj.student.department
+
+    get_department.admin_order_field = "student"  # Allows column order sorting
+    get_department.short_description = "Department"  # Renames column head
+
+    def get_group_number(self, obj):
+        return obj.student.group_number
+
+    get_group_number.admin_order_field = "student"
+    get_group_number.short_description = "Group Number"
