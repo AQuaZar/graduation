@@ -16,6 +16,7 @@ try:
             payload = {"username":f"{username}","password":"NAU12345"}
             r = requests.post(url, headers=headers, data=payload)
             print(r.status_code)
+            print(r.content)
             if r.status_code==200:
                 parsed = json.loads(r.content)
                 print("Now place RFID card to write token \n")
